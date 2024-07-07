@@ -16,7 +16,7 @@ import { taskReducer } from './states/task.reducers';
 import { TaskEffects } from './states/task.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 
 
 
@@ -32,7 +32,6 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     LoginModule,
     RegistrationModule,
     DashboardModule,
-    SweetAlert2Module.forRoot(),
     RouterLink,
     StoreModule.forRoot({ tasks: taskReducer }),
     EffectsModule.forRoot([TaskEffects]),
