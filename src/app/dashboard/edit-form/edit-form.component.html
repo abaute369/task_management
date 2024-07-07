@@ -1,0 +1,69 @@
+<ng-template #content let-modal>
+  <div class="modal-header bg-info text-white">
+    <h4 class="modal-title" id="modal-basic-title">Task update</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="taskForm">
+      <div class="formGroup mb-2">
+        <label for="taskname">Task Name:</label>
+        <input id="taskname" formControlName="taskname" type="text" class="form-control">
+        <div *ngIf="taskForm.get('taskname').invalid && taskForm.get('taskname').touched">
+         <small> Task Name is required. </small>
+        </div>
+      </div>
+
+      <div class="formGroup mb-2">
+        <label for="priority">Priority:</label>
+        <select id="priority" formControlName="priority" class="form-select">
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+        <div *ngIf="taskForm.get('priority').invalid && taskForm.get('priority').touched">
+        <small> Priority is required.</small>
+        </div>
+      </div>
+
+      <div class="formGroup mb-2">
+        <label for="taskDate">Task Date:</label>
+        <input id="taskDate" formControlName="taskDate" type="date" class="form-control">
+        <div *ngIf="taskForm.get('taskDate').invalid && taskForm.get('taskDate').touched">
+         <small>Task Date is required.</small> 
+        </div>
+      </div>
+
+      <div class="formGroup mb-2">
+        <label for="achievedDate">Achieved Date:</label>
+        <input id="achievedDate" formControlName="achievedDate" type="date" class="form-control">
+        <div *ngIf="taskForm.get('achievedDate').invalid && taskForm.get('achievedDate').touched">
+        <small>  Achieved Date is required.</small>
+        </div>
+      </div>
+
+      <div formArrayName="tags" class="mb-2">
+        <label class="form-label">Tags:</label>
+
+        <button type="button" class="btn btn-primary p-1 rounded-circle ms-3" (click)="addTag()">+</button>
+        <div *ngFor="let tag of tags.controls; let i=index" [formGroupName]="i" class="d-flex mb-2">
+          <input formControlName="name" type="text" class="form-control w-75 me-2 mb-2">
+          <button type="button" class="btn btn-primary p-1 rounded-circle" (click)="removeTag(i)">-</button>
+          <div *ngIf="tag.get('name').invalid && tag.get('name').touched">
+           <small>Tag is required.</small> 
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary " aria-label="Close"
+      (click)="modal.dismiss('Cross click')">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="taskForm.valid? modal.close():null"
+      >Update</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-info  text text-white" (click)="open(content)" (click)="setEditForm()">Edit Task</button>
+
+<!-- <pre>{{ closeResult }}</pre> -->

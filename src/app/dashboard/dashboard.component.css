@@ -1,0 +1,17 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  .example-container {
+    height: 400px;
+    overflow: auto;
+  }
+  
+  /* td, th {
+    width: 25%;
+  } */
+  
